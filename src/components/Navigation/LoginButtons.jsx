@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export default function AuthButtons() {
+export default function LoginButtons() {
 	return (
 		<>
 			<div className="navbar-item">

@@ -5,14 +5,14 @@ import { userState } from "../../store/atoms.js";
 
 import { Link } from "react-router-dom";
 
-import AuthButtons from "./AuthButtons.jsx";
+import LoginButtons from "./LoginButtons.jsx";
 import ProfileButtons from "./ProfileButtons.jsx";
 
 export default function Navbar() {
 	const [isOpen, setIsOpen] = useState(false);
 
 	const toggle = () => {
-		setIsOpen(!isOpen)
+		setIsOpen(!isOpen);
 	};
 
 	const user = useRecoilValue(userState);
@@ -57,10 +57,7 @@ export default function Navbar() {
 					</div>
 
 					<div className="navbar-end">
-
-						{user ? <ProfileButtons /> : <AuthButtons />}
-
-
+						{user ? <ProfileButtons /> : <LoginButtons />}
 					</div>
 				</div>
 			</nav>

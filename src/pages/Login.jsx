@@ -1,4 +1,4 @@
-import LoginForm from "../components/LoginForm"
+import LoginForm from "../components/Auth/LoginForm"
 
 import {useEffect} from "react"
 import { useRecoilValue } from "recoil";
