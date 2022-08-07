@@ -1,7 +1,7 @@
-import React from 'react'
+import GridList from '../components/GridList.jsx'
 
 export default function HomePage() {
   return (
-    <div>HomePage</div>
+    <GridList/>
   )
 }

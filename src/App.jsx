@@ -7,6 +7,7 @@ import Header from './components/Navigation/Navbar.jsx'
 import Home from './pages/Home.jsx'
 import Login from './pages/Login.jsx'
 import SignUp from './pages/Signup.jsx'
+import Listing from './pages/Listing.jsx'
 
 //Footer import
 // import Footer from './components/Footer/Footer.jsx'
@@ -27,6 +28,7 @@ function App() {
     <Route path="/about" element={<h2>About</h2>} />
     <Route path="/signup" element={<SignUp/>} />
     <Route path="/login" element={<Login/>} />
+    <Route path="/listing/:id" element={<Listing/>} />
 
   </Routes>
 
