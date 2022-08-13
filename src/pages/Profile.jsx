@@ -34,54 +34,49 @@ export default function Profile() {
 	return (
 		<>
 			<div className="container">
-				<div className="columns">
-					<div className="column is-8">
-						{isLoaded && !listings.length <= 0 ? (
-							<>
-								<h4 className="title is-4">My Listings:</h4>
-								<div className="columns is-multiline">
-									{listings.map((listing) => {
-										return (
-											<div key={listing.id} className="column is-3">
-												<ListingCard listing={listing} />
-											</div>
-										);
-									})}
-								</div>
-
-								<br />
-							</>
-						) : null}
-
-						{isLoaded && !offers.length <= 0 ? (
-							<>
-								<h4 className="title is-4">My Offers:</h4>
-								<div className="columns is-multiline">
-									{offers.map((offer) => {
-										return (
-											<div key={offer.id} className="column is-3">
-												<ListingCard listing={offer} />
-											</div>
-										);
-									})}
-								</div>
-							</>
-						) : null}
-					</div>
-					<div className="column is-4">
-						<div className="box">
-							<div className="media">
-								<div className="media-content">
-									<h4 className="title is-4">Hello {user.username}</h4>
-									<p className="subtitle is-6">{user.email}</p>
-								</div>
-								<div className="media-right">
-									<button className="button is-danger">Logout</button>
-								</div>
-							</div>
+				<div className="box">
+					<div className="media">
+						<div className="media-content">
+							<h4 className="title is-4">Hello {user.username}</h4>
+							<p className="subtitle is-6">{user.email}</p>
+						</div>
+						<div className="media-right">
+							<button className="button is-danger">Logout</button>
 						</div>
 					</div>
 				</div>
+
+				{isLoaded && !listings.length <= 0 ? (
+					<>
+						<h4 className="title is-4">My Listings:</h4>
+						<div className="columns is-multiline p4">
+							{listings.map((listing) => {
+								return (
+									<div key={listing.id} className="column is-3">
+										<ListingCard listing={listing} />
+									</div>
+								);
+							})}
+						</div>
+
+						<br />
+					</>
+				) : null}
+
+				{isLoaded && !offers.length <= 0 ? (
+					<>
+						<h4 className="title is-4">My Offers:</h4>
+						<div className="columns is-multiline p-4">
+							{offers.map((offer) => {
+								return (
+									<div key={offer.id} className="column is-3">
+										<ListingCard listing={offer} />
+									</div>
+								);
+							})}
+						</div>
+					</>
+				) : null}
 			</div>
 		</>
 	);
