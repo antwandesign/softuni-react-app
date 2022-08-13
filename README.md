@@ -60,9 +60,9 @@ Proof of concept for a bidding oriented marketplace. The main goal of the projec
 * Bulma (CSS Framework)
 
 ### Backend:
-* Virtual Machine on Oracle Cloud infrastructure
-* NGINX Reverse Proxy
-* Strapi - Open Source CMS solution.
+* Virtual Machine on Oracle Cloud
+* Strapi CMS
+* NGINX
 * CloudFlare
 
 
