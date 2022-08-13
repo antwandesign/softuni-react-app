@@ -3,8 +3,10 @@
 
 
 <br />
-
+<div align="center">
   <h3 align="center">VEHTOSHARNIK</h3>
+    <img align="center" src="https://vehtosharnik.antwandesign.com/vehtosharnik.svg" alt="Logo" width="80" height="80">
+  </a>
   <h6 align="center">SoftUni React Project</h3>
 
 
@@ -45,7 +47,7 @@ Proof of concept for a bidding oriented marketplace. The main goal of the projec
 
 
 
-### Front end built With
+### Built With
 
 
 * React.js
