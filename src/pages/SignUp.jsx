@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 
 export default function SignUpPage() {
 	let navigate = useNavigate();
-
 	const user = useRecoilValue(userState);
 	useEffect(() => {
 		if (user) {

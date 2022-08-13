@@ -48,7 +48,6 @@ export async function acceptOffer(data,jwt) {
   
 }
 
-//strapi.antwandesign.com/api/listings?populate[offers][populate][0]=author&populate[album][populate][0]=*&populate=author'&filters[offers][author][id][$eq]=1
 
 
 
