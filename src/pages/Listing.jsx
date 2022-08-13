@@ -1,34 +1,25 @@
-import { useRecoilValue } from "recoil";
-import { listingState } from "../store/atoms.js";
-import Listingcard from "../components/ListingCard.jsx";
 import { useParams } from "react-router-dom";
-import {useEffect} from "react"
+import { useEffect, useState } from "react";
+import ListingDetails from "../components/Listings/ListingDetails";
+
+import { getListingById } from "../api/ListingsApi.js";
 
 export default function Listing() {
-    const { id } = useParams();
-	const [listing] = getFromState(id) || []
-	const attributes = listing.attributes;
-    useEffect(()=>{
+	const { id } = useParams();
 
-    },[])
+	const [listing, setListing] = useState();
 
+	useEffect(() => {
+		getListingById(id)
+			.then((res) => {
+				setListing(res.data.data);
+			})
+			.catch((err) => console.log(err));
+	}, []);
 
-    console.log(listing)
+	if (!listing) {
+		return <div>Loading...</div>;
+	}
 
-	return(
-	<div className="container">
-		<div className="columns">
-			<div className="column is-4">
-				<Listingcard listing={listing} />
-			</div>
-		</div>
-	</div>
-    )
-
-
-
-    function getFromState(id){
-        return useRecoilValue(listingState).filter((el) => el.id == id)
-    }
-
+	return <ListingDetails listing={listing} />;
 }

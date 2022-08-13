@@ -1,0 +1,20 @@
+.main-image{
+    width:100%;
+    object-fit:contain; 
+    aspect-ratio: 3/2;
+    max-height: 32rem;
+
+}
+
+.image-list{
+    display:flex;
+    width:100%;
+    overflow:hidden;
+}
+
+.image-list-element{
+    width:100%;
+    aspect-ratio: 1 / 1;
+    max-width:4rem;
+
+}

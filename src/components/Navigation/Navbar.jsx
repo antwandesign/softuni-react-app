@@ -18,15 +18,11 @@ export default function Navbar() {
 	const user = useRecoilValue(userState);
 
 	return (
-		<header>
+		<header className="container">
 			<nav className="navbar" role="navigation" aria-label="main navigation">
 				<div className="navbar-brand">
 					<Link to="/" className="navbar-item">
-						<img
-							src="https://bulma.io/images/bulma-logo.png"
-							width="112"
-							height="28"
-						/>
+						<h4 className="title is-spaced is-4">VEHTOSHARNIK</h4>
 					</Link>
 
 					<a
@@ -42,23 +38,14 @@ export default function Navbar() {
 					</a>
 				</div>
 
-				<div
-					id="navbarBasicExample"
-					className={isOpen ? "is-active navbar-menu" : "navbar-menu"}
-				>
+				<div id="navbarBasicExample" className={isOpen ? "is-active navbar-menu" : "navbar-menu"}>
 					<div className="navbar-start">
-						<Link to="/" className="navbar-item">
-							Home
-						</Link>
-
-						<Link to="/about" className="navbar-item">
-							About
+						<Link to="/create" className="navbar-item">
+							Create Listing
 						</Link>
 					</div>
 
-					<div className="navbar-end">
-						{user ? <ProfileButtons /> : <LoginButtons />}
-					</div>
+					<div className="navbar-end">{user ? <ProfileButtons /> : <LoginButtons />}</div>
 				</div>
 			</nav>
 		</header>

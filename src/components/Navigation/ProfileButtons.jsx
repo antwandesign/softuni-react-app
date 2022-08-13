@@ -1,18 +1,17 @@
 export default function ProfileButtons() {
-
-    const logout = () => {
-        sessionStorage.removeItem('user')
-        window.location.reload()
-    }
+	const logout = () => {
+		sessionStorage.removeItem("user");
+		window.location.reload();
+	};
 	return (
 		<>
 			<div className="navbar-item">
 				<div className="buttons">
-					<button onClick={logout} className="button is-primary">
-						<strong>Log Out</strong>
+					<button to="/create" className="button is-primary">
+						ADD
 					</button>
-					<button to="/login" className="button is-light">
-						Profile
+					<button onClick={logout} className="button is-light">
+						<strong>Log Out</strong>
 					</button>
 				</div>
 			</div>
