@@ -19,8 +19,6 @@ export default function GridList() {
 			.catch((err) => setError(err.message));
 	}, []);
 
-	useEffect(() => {}, [listings]);
-
 	return (
 		<>
 			<div className="container">

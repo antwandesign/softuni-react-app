@@ -1,9 +1,24 @@
+import { acceptOffer } from "../../api/OfferApi";
+
 export default function ListingOffers(props) {
 	const offers = props.offers.data;
 	const isOwner = props.isOwner;
 
+	console.log(props.isSold);
+
 	const acceptHandler = (e) => {
-		alert("WIP");
+		e.preventDefault();
+		const data = {
+			data: {
+				listingId: props.listingId,
+				offerId: e.target.value
+			}
+		};
+		acceptOffer(data, props.user.jwt)
+			.then((res) => {
+				location.reload();
+			})
+			.catch((err) => console.log(err));
 	};
 
 	return (
@@ -25,7 +40,7 @@ export default function ListingOffers(props) {
 								<td>{offer.attributes.amount}</td>
 								{!isOwner ? null : (
 									<td>
-										<button onClick={acceptHandler} className="button is-small">
+										<button onClick={acceptHandler} value={offer.id} className="button is-small">
 											Accept
 										</button>
 									</td>

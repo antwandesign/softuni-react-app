@@ -39,11 +39,7 @@ export default function Navbar() {
 				</div>
 
 				<div id="navbarBasicExample" className={isOpen ? "is-active navbar-menu" : "navbar-menu"}>
-					<div className="navbar-start">
-						<Link to="/create" className="navbar-item">
-							Create Listing
-						</Link>
-					</div>
+					<div className="navbar-start"></div>
 
 					<div className="navbar-end">{user ? <ProfileButtons /> : <LoginButtons />}</div>
 				</div>

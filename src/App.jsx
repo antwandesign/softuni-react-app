@@ -10,6 +10,7 @@ import SignUp from "./pages/Signup.jsx";
 import Listing from "./pages/Listing.jsx";
 import Create from "./pages/Create.jsx";
 import Edit from "./pages/Edit.jsx";
+import Profile from "./pages/Profile.jsx";
 
 //Footer import
 // import Footer from './components/Footer/Footer.jsx'
@@ -29,6 +30,7 @@ function App() {
 				<Route path="/login" element={<Login />} />
 				<Route path="/listing/:id/edit" element={<Edit />} />
 				<Route path="/listing/:id" element={<Listing />} />
+				<Route path="/profile/:id" element={<Profile />} />
 			</Routes>
 		</>
 	);

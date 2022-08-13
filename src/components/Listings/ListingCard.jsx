@@ -10,9 +10,11 @@ export default function ListingCard(listing) {
 		return Math.max(prev, curr.attributes.amount);
 	}, 0);
 
+	console.log(attributes.sold);
+
 	return (
 		<div className="card">
-			<header className="card-header">
+			<header className={`card-header  ${attributes.sold ? "has-background-primary" : null}`}>
 				<p className="card-header-title">{attributes.title}</p>
 			</header>
 			<div className="card-image">
@@ -29,7 +31,7 @@ export default function ListingCard(listing) {
 				</div>
 				<div className=" card-footer-item">
 					<Link to={"/listing/" + id} className="button is-primary is-fullwidth">
-						BUY
+						{attributes.sold ? "SOLD" : "VIEW"}
 					</Link>
 				</div>
 			</footer>

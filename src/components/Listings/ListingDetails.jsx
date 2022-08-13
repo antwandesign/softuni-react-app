@@ -4,6 +4,7 @@ import AuthorDetails from "./AuthorDetails";
 import ListingOffers from "./ListingOffers";
 import ListingMakeOffer from "./ListingMakeOffer";
 import ListingControls from "./ListingControls";
+import ListingSold from "./ListingSold";
 
 import { useRecoilValue } from "recoil";
 import { userState } from "../../store/atoms.js";
@@ -13,6 +14,8 @@ export default function ListingDetails(props) {
 
 	const user = useRecoilValue(userState);
 	const isOwner = attributes.author.data.id == user?.user?.id;
+
+	console.log(attributes.acceptedOffer, attributes.sold);
 
 	return (
 		<div className="container">
@@ -34,15 +37,25 @@ export default function ListingDetails(props) {
 					<div className="box">
 						<AuthorDetails author={attributes.author} />
 					</div>
-					{}
-					<div className="box">
-						{attributes.offers.data.length <= 0 ? (
-							<p>No offers</p>
-						) : (
-							<ListingOffers offers={attributes.offers} isOwner={isOwner} />
-						)}
-						{user && !isOwner ? <ListingMakeOffer listingId={id} /> : null}
-					</div>
+
+					{!attributes.sold ? (
+						<div className="box">
+							{attributes.offers.data.length <= 0 ? (
+								<p>No offers</p>
+							) : (
+								<ListingOffers
+									user={user}
+									listingId={id}
+									offers={attributes.offers}
+									isOwner={isOwner}
+									isSold={attributes.sold}
+								/>
+							)}
+							{user && !isOwner && !attributes.sold ? <ListingMakeOffer listingId={id} /> : null}
+						</div>
+					) : null}
+
+					{attributes.sold ? <ListingSold /> : null}
 				</div>
 			</div>
 		</div>

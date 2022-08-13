@@ -7,7 +7,7 @@ const API_URL = "https://strapi.antwandesign.com/api/"
 
 export async function getAllListings() {
     try {
-        const res = await axios.get(API_URL + 'listings?populate=*')
+        const res = await axios.get(API_URL + 'listings?populate=*&filters[sold][$eq]=false')
         return res
     } catch (err) {
         throw new Error(err.message)
@@ -16,8 +16,25 @@ export async function getAllListings() {
 
 export async function getListingById(id) {
     try {
+        //strapi.antwandesign.com/api/listings/21
 
-        const res = await axios.get(API_URL + "listings/" + id + '?populate[offers][populate][0]=author&populate[album][populate][0]=*&populate=author')
+        const res = await axios.get(API_URL + "listings/" + id + '?populate[offers][populate][0]=author&populate[album][populate][0]=*&populate=author&populate[acceptedOffer][populate][0]=*')
+        return res
+    } catch (err) {
+        throw new Error(err.message)
+    }
+}
+
+export async function getMyListings(id,jwt) {
+    try {
+
+        const res = await axios.get(API_URL + `listings?populate=*&filters[author][id][$eq]=${id}`, {
+            headers: {
+                Authorization: `Bearer ${jwt}`
+
+            }
+            
+        })
         return res
     } catch (err) {
         throw new Error(err.message)
@@ -63,3 +80,7 @@ export async function updateListing(id, data,jwt) {
         throw new Error(err)
     }
 }
+
+
+
+//strapi.antwandesign.com/api/
