@@ -15,8 +15,6 @@ export default function ListingDetails(props) {
 	const user = useRecoilValue(userState);
 	const isOwner = attributes.author.data.id == user?.user?.id;
 
-	console.log(attributes.acceptedOffer, attributes.sold);
-
 	return (
 		<div className="container">
 			<div className="columns">
@@ -28,10 +26,10 @@ export default function ListingDetails(props) {
 					<div className="box">
 						<h1 className="title">Description:</h1>
 						<p className="subtitle">{attributes.description}</p>
-						{user && isOwner ? (
-							<ListingControls id={id} title={attributes.title} description={attributes.description} />
-						) : null}
 					</div>
+					{user && isOwner ? (
+						<ListingControls id={id} title={attributes.title} description={attributes.description} />
+					) : null}
 				</div>
 				<div className="column is-4">
 					<div className="box">

@@ -11,6 +11,7 @@ import Listing from "./pages/Listing.jsx";
 import Create from "./pages/Create.jsx";
 import Edit from "./pages/Edit.jsx";
 import Profile from "./pages/Profile.jsx";
+import NotFound from "./pages/NotFound.jsx";
 
 //Footer import
 // import Footer from './components/Footer/Footer.jsx'
@@ -23,6 +24,7 @@ function App() {
 		<>
 			<Header />
 			<Routes>
+				<Route path="*" element={<NotFound />} />
 				<Route path="/" element={<Home />} />
 				<Route path="/create" element={<Create />} />
 

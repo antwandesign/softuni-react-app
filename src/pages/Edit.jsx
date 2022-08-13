@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../css/Create.css";
 
 import { useRecoilValue } from "recoil";
@@ -9,24 +9,32 @@ import { useNavigate, useSearchParams, useParams } from "react-router-dom";
 import { updateListing } from "../api/ListingsApi";
 
 export default function Edit() {
+	//Route Guard
 	const navigate = useNavigate();
 	const user = useRecoilValue(userState);
-
-	if (!user) {
-		navigate("/login");
-	}
+	useEffect(() => {
+		if (!user) {
+			navigate("/login");
+		}
+	}, []);
+	//End Route Guard
 
 	const [searchParams, setSearchParams] = useSearchParams();
-
 	const { id } = useParams();
 
 	const [listing, setListing] = useState({
-		title: searchParams.get("title"),
-		description: searchParams.get("description")
+		title: searchParams.get("title") || "",
+		description: searchParams.get("description") || ""
 	});
+	const [error, setError] = useState("");
 
 	const submitHandler = (e) => {
 		e.preventDefault();
+
+		if (!listing.title || !listing.description) {
+			setError("All fields are required!");
+			return;
+		}
 
 		const data = {
 			data: {
@@ -77,6 +85,7 @@ export default function Edit() {
 						<div className="field">
 							<input className="button is-primary is-fullwidth" type="submit" />
 						</div>
+						{error ? <div className="notification is-danger m-4">{error}</div> : null}
 					</form>
 				</div>
 			</div>

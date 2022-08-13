@@ -1,4 +1,4 @@
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useRecoilState } from "recoil";
 import { userState } from "../store/atoms.js";
 import { getMyListings } from "../api/ListingsApi";
 import { getMyOffers } from "../api/OfferApi";
@@ -6,17 +6,22 @@ import { getMyOffers } from "../api/OfferApi";
 import ListingCard from "../components/Listings/ListingCard.jsx";
 
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Profile() {
-	const { jwt, user } = useRecoilValue(userState);
+	const [userData, setUserState] = useRecoilState(userState);
+	const { jwt, user } = userData;
 	const [listings, setListings] = useState([]);
 	const [offers, setOffers] = useState([]);
 	const [isLoaded, setIsLoaded] = useState(false);
+	const navigate = useNavigate();
 
-	useState(() => {
+	useEffect(() => {
+		if (!userData) {
+			return navigate("/login");
+		}
 		getMyListings(user.id, jwt)
 			.then((res) => {
-				console.log(res.data.data);
 				setListings(res.data.data);
 				setIsLoaded(true);
 			})
@@ -26,25 +31,36 @@ export default function Profile() {
 
 		getMyOffers(user.id, jwt).then((res) => {
 			setOffers(res.data.data);
-			console.log(res.data.data);
 			setIsLoaded(true);
 		});
 	}, []);
 
+	function handleLogout() {
+		sessionStorage.removeItem("user");
+		setUserState(null);
+		navigate("/");
+	}
+
 	return (
 		<>
 			<div className="container">
-				<div className="box">
-					<div className="media">
-						<div className="media-content">
-							<h4 className="title is-4">Hello {user.username}</h4>
-							<p className="subtitle is-6">{user.email}</p>
-						</div>
-						<div className="media-right">
-							<button className="button is-danger">Logout</button>
+				{!user ? (
+					<h1>No user</h1>
+				) : (
+					<div className="box">
+						<div className="media">
+							<div className="media-content">
+								<h4 className="title is-4">Hello {user.username}</h4>
+								<p className="subtitle is-6">{user.email}</p>
+							</div>
+							<div className="media-right">
+								<button onClick={handleLogout} className="button is-danger">
+									Logout
+								</button>
+							</div>
 						</div>
 					</div>
-				</div>
+				)}
 
 				{isLoaded && !listings.length <= 0 ? (
 					<>

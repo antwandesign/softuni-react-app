@@ -10,8 +10,6 @@ export default function ListingCard(listing) {
 		return Math.max(prev, curr.attributes.amount);
 	}, 0);
 
-	console.log(attributes.sold);
-
 	return (
 		<div className="card">
 			<header className={`card-header  ${attributes.sold ? "has-background-primary" : null}`}>

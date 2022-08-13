@@ -9,22 +9,35 @@ import { useNavigate } from "react-router-dom";
 import { createListing } from "../api/ListingsApi";
 
 export default function Create() {
+	const user = useRecoilValue(userState);
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		if (!user) {
+			navigate("/login");
+		}
+	}, []);
+
 	const [listing, setListing] = useState({});
 	const [loading, setLoading] = useState(false);
 
 	const [error, setError] = useState("");
 
-	const navigate = useNavigate();
-
-	const user = useRecoilValue(userState);
-
 	//Send request to server
 
 	const submitHandler = (e) => {
 		e.preventDefault();
+
+		if (!listing.title || !listing.description || !listing.files) {
+			setError("All fields are required!");
+			console.log(error);
+			return;
+		}
+
 		setLoading(true);
 
 		const formData = new FormData();
+
 		const data = {
 			title: listing.title,
 			description: listing.description,
@@ -105,6 +118,7 @@ export default function Create() {
 								Submit
 							</button>
 						</div>
+						{error ? <div className="notification is-danger m-4">{error}</div> : null}
 					</form>
 				</div>
 			</div>
