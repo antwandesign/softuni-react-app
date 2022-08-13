@@ -91,7 +91,7 @@ To get a local copy up and running follow these simple example steps.
    ```
 3. Preview
    ```sh
-   npm dev
+   npm run dev
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
